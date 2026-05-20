@@ -1,797 +1,996 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Result | Shripur Kindergarten School</title>
-  <style>
-/* ═══════════════════════════════════════════════
-   RESET & BASE
-═══════════════════════════════════════════════ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-:root {
-  --blue:       #1565C0;
-  --blue-dark:  #0D47A1;
-  --green:      #1B5E20;
-  --green-dark: #145214;
-  --text:       #1A1A1A;
-  --muted:      #757575;
-  --border:     #555;
-  --bg-page:    #ECF0F5;
-  --bg-card:    #DDE5EE;
-  --white:      #FFFFFF;
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Result | Shripur Kindergarten School
+</title>
+
+<style>
+
+*,*::before,*::after{
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
-body {
-  font-family: 'Times New Roman', Times, serif;
-  background: var(--bg-page);
-  color: var(--text);
-  min-height: 100vh;
+:root{
+
+--blue:#1565C0;
+--blue-dark:#0D47A1;
+
+--green:#1B5E20;
+--green-dark:#145214;
+
+--text:#1A1A1A;
+--muted:#757575;
+
+--border:#555;
+
+--bg-page:#ECF0F5;
+--bg-card:#DDE5EE;
+
+--white:#FFFFFF;
 }
 
-/* ═══════════════════════════════════════════════
-   ① INTERFACE PAGE
-═══════════════════════════════════════════════ */
-#interfacePage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 28px 16px 48px;
-  min-height: 100vh;
-  background: var(--bg-page);
+body{
+
+font-family:'Times New Roman',Times,serif;
+
+background:var(--bg-page);
+
+color:var(--text);
+
+min-height:100vh;
 }
 
-/* School name row – logo + name side by side */
-.iface-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 6px;
-  flex-wrap: nowrap;
+
+/* =========================
+INTERFACE
+========================= */
+
+#interfacePage{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+padding:28px 16px 48px;
+
+min-height:100vh;
+
+background:var(--bg-page);
 }
 
-/* Logo on interface page – height = school name font size */
-.iface-logo {
-  height: clamp(18px, 4.5vw, 46px);   /* exact same clamp as school name */
-  width: auto;
-  object-fit: contain;
-  flex-shrink: 0;
-  display: block;
+.iface-header-row{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:14px;
+
+margin-bottom:6px;
 }
 
-/* School name – single line, large */
-.iface-school-name {
-  font-size: clamp(18px, 4.5vw, 46px);
-  font-weight: 900;
-  letter-spacing: 1.5px;
-  text-align: center;
-  white-space: nowrap;
-  line-height: 1.15;
-  margin-bottom: 6px;
-  overflow: visible;
+.iface-logo{
+
+height:clamp(18px,4.5vw,46px);
+
+width:auto;
+
+object-fit:contain;
 }
 
-/* Jagat tagline – small, light */
-.iface-tagline {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(11px, 2.5vw, 15px);
-  color: var(--muted);
-  text-align: center;
-  margin-bottom: 14px;
+.iface-school-name{
+
+font-size:clamp(18px,4.5vw,46px);
+
+font-weight:900;
+
+letter-spacing:1.5px;
+
+text-align:center;
+
+line-height:1.15;
 }
 
-/* Exam title */
-.iface-exam-title {
-  font-size: clamp(16px, 3.8vw, 26px);
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 30px;
+.iface-tagline{
+
+font-family:Arial,Helvetica,sans-serif;
+
+font-size:clamp(11px,2.5vw,15px);
+
+color:var(--muted);
+
+text-align:center;
+
+margin-bottom:14px;
 }
 
-/* Card box around dropdowns */
-.iface-card {
-  background: var(--bg-card);
-  border-radius: 14px;
-  padding: 32px 28px 36px;
-  width: 100%;
-  max-width: 480px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+.iface-exam-title{
+
+font-size:clamp(16px,3.8vw,26px);
+
+font-weight:bold;
+
+text-align:center;
+
+margin-bottom:30px;
 }
 
-/* Custom select wrapper */
-.sel-wrap {
-  position: relative;
-  background: var(--white);
-  border: 1.5px solid #B0BFCC;
-  border-radius: 8px;
-  overflow: visible;
+.iface-card{
+
+background:var(--bg-card);
+
+border-radius:14px;
+
+padding:32px 28px 36px;
+
+width:100%;
+
+max-width:480px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
 
-.sel-wrap select {
-  width: 100%;
-  padding: 16px 44px 16px 16px;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: clamp(16px, 4vw, 20px);
-  font-weight: bold;
-  color: var(--blue);
-  text-align: center;
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
+.sel-wrap{
+
+position:relative;
+
+background:var(--white);
+
+border:1.5px solid #B0BFCC;
+
+border-radius:8px;
 }
 
-/* Normal (non-placeholder) option text */
-.sel-wrap select.has-value {
-  color: var(--text);
-  font-weight: normal;
+.sel-wrap select{
+
+width:100%;
+
+padding:16px 44px 16px 16px;
+
+border:none;
+
+outline:none;
+
+background:transparent;
+
+font-family:'Times New Roman',Times,serif;
+
+font-size:clamp(16px,4vw,20px);
+
+font-weight:bold;
+
+color:var(--blue);
+
+text-align:center;
+
+appearance:none;
+
+cursor:pointer;
 }
 
-/* Chevron */
-.sel-wrap::after {
-  content: '›';
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%) rotate(90deg);
-  color: #888;
-  font-size: 20px;
-  pointer-events: none;
-  font-family: Arial, sans-serif;
+.sel-wrap::after{
+
+content:'›';
+
+position:absolute;
+
+right:16px;
+
+top:50%;
+
+transform:translateY(-50%) rotate(90deg);
+
+font-size:20px;
+
+color:#777;
 }
 
-/* View Result button */
-.view-btn {
-  background: var(--green);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 17px 16px;
-  font-size: clamp(16px, 4vw, 19px);
-  font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
-  cursor: pointer;
-  width: 100%;
-  transition: background 0.18s;
-  letter-spacing: 0.5px;
-}
-.view-btn:hover:not(:disabled) { background: var(--green-dark); }
-.view-btn:disabled { background: #9E9E9E; cursor: not-allowed; opacity: 0.7; }
+.view-btn{
 
-/* Utility */
-.loading-msg {
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  color: var(--muted);
-  text-align: center;
-  margin-top: 12px;
-  display: none;
-}
-.err-msg {
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  color: #C62828;
-  text-align: center;
-  margin-top: 10px;
-  display: none;
+background:var(--green);
+
+color:#fff;
+
+border:none;
+
+border-radius:8px;
+
+padding:17px 16px;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
 }
 
-/* ═══════════════════════════════════════════════
-   ② RESULT PAGE  (screen wrapper)
-═══════════════════════════════════════════════ */
-#resultPage {
-  display: none;
-  background: var(--bg-page);
-  padding: 16px 8px 40px;
+.view-btn:hover{
+
+background:var(--green-dark);
 }
 
-.result-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.loading-msg,
+.err-msg{
+
+font-family:Arial,sans-serif;
+
+font-size:13px;
+
+margin-top:10px;
+
+display:none;
 }
 
-/* Back button – screen only */
-.back-btn {
-  display: inline-block;
-  margin: 12px auto 16px;
-  background: none;
-  border: 1.5px solid #888;
-  border-radius: 6px;
-  padding: 7px 22px;
-  font-size: 13px;
-  font-family: Arial, sans-serif;
-  color: #444;
-  cursor: pointer;
-  transition: border-color 0.15s;
-}
-.back-btn:hover { border-color: var(--blue); color: var(--blue); }
+.err-msg{
 
-/* ═══════════════════════════════════════════════
-   ③ REPORT CARD  (A4 card)
-═══════════════════════════════════════════════ */
-.result-card {
-  background: var(--white);
-  width: 210mm;
-  max-width: 100%;
-  padding: 0.8cm 1.6cm 1.6cm 1.6cm;
-  box-shadow: 0 3px 16px rgba(0,0,0,0.18);
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 8.5pt;
-  line-height: 1.3;
-}
-.cert-no { text-align:right; font-size:7pt; margin-bottom:1px; color:#444; }
-.card-top { display:flex; align-items:center; justify-content:space-between; gap:4px; margin-bottom:1px; }
-.school-emblem-img { width:44px; height:44px; object-fit:contain; flex-shrink:0; display:block; }
-.school-emblem {
-  width:44px; height:44px; border:2.5px double var(--border); border-radius:50%;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  font-size:6.5pt; font-weight:bold; color:#333; flex-shrink:0; text-align:center; line-height:1.1;
-}
-.card-school-name { font-size:13pt; font-weight:bold; text-align:center; letter-spacing:0.8px; flex:1; padding:0 3px; line-height:1; }
-.qr-img { width:44px; height:44px; flex-shrink:0; border:1px solid #ccc; }
-.card-subtitle { text-align:center; font-size:8.5pt; margin:1px 0 3px; }
-.card-divider { border:none; border-top:1.5px solid var(--border); margin:2px 0; }
-.student-info { margin:2px 0; display:flex; flex-wrap:wrap; gap:2px 12px; align-items:center; font-size:8.5pt; }
-.student-info span:last-child { font-size:7.5pt; }
-.info-box { display:inline-block; border:1px solid var(--border); padding:1px 7px; font-size:8.5pt; min-width:34px; text-align:center; }
-.section-heading { text-align:center; font-size:8pt; font-weight:bold; margin:2px 0 2px; }
-
-/* marks table */
-.marks-table { width:100%; border-collapse:collapse; font-size:7.5pt; table-layout:fixed; }
-.marks-table th, .marks-table td { border:1px solid var(--border); padding:2px 2px; text-align:center; vertical-align:middle; word-break:break-word; }
-.marks-table thead th { background:#F0F0F0; font-weight:bold; font-size:7pt; }
-.subj-cell { font-size:8pt; font-weight:600; text-align:left; padding-left:3px !important; }
-.obt { font-size:9pt; font-weight:bold; }
-.sep-col { width:4px; padding:0 !important; border-left:2.5px double var(--border) !important; border-right:2.5px double var(--border) !important; background:#f5f5f5; }
-
-/* summary table */
-.summary-table { width:100%; border-collapse:collapse; font-size:7.5pt; margin-top:4px; }
-.summary-table th, .summary-table td { border:1px solid var(--border); padding:2px 2px; text-align:center; vertical-align:middle; }
-.summary-table thead th { background:#F0F0F0; font-weight:bold; font-size:7pt; }
-.opt-subj-label { writing-mode:vertical-rl; transform:rotate(180deg); width:14px; font-size:6.5pt; font-weight:bold; background:#F0F0F0; padding:2px 1px !important; text-align:center; }
-
-/* grade + sigs side by side */
-.bottom-row { display:flex; align-items:flex-start; gap:12px; margin-top:5px; }
-.grade-scale-table { border-collapse:collapse; font-size:6.5pt; flex-shrink:0; }
-.grade-scale-table th, .grade-scale-table td { border:1px solid #888; padding:1px 5px; text-align:center; }
-.grade-scale-table thead th { background:#F0F0F0; font-weight:bold; }
-
-/* signatures */
-.signatures { display:flex; justify-content:space-between; align-items:flex-end; flex:1; }
-.sig-item { text-align:center; font-size:7.5pt; }
-.sig-tick { display:block; font-size:18pt; line-height:1; margin-bottom:1px; }
-.sig-line { border-top:1px solid var(--border); padding-top:2px; margin-top:2px; font-size:7pt; }
-
-/* actions */
-.card-actions { display:flex; justify-content:space-between; align-items:center; margin-top:8px; padding:0 2px; }
-.card-action-btn {
-  background:none; border:none; color:var(--blue-dark);
-  font-family:'Times New Roman',Times,serif; font-size:9.5pt; font-weight:bold;
-  cursor:pointer; display:flex; align-items:center; gap:3px; padding:1px 3px; transition:opacity .15s;
-}
-.card-action-btn:hover { opacity:.7; }
-
-/* ═══════════════════════════════════════════════
-   MOBILE OVERRIDES
-═══════════════════════════════════════════════ */
-@media (max-width: 640px) {
-  #resultPage { padding: 8px 4px 30px; }
-  .result-card { padding: 6mm 4mm 10mm 4mm; font-size: 7.5pt; }
-  .card-school-name { font-size: 9.5pt; letter-spacing: 0.4px; }
-  .card-subtitle { font-size: 7pt; }
-  .school-emblem, .school-emblem-img { width: 32px; height: 32px; font-size: 5pt; }
-  .qr-img { width: 32px; height: 32px; }
-  .marks-table th, .marks-table td,
-  .summary-table th, .summary-table td { padding: 1px 1px; font-size: 6.5pt; }
-  .marks-table thead th { font-size: 6pt; }
-  .obt { font-size: 7.5pt; }
-  .subj-cell { font-size: 7pt; }
-  .student-info { font-size: 7.5pt; }
-  .sig-tick { font-size: 14pt; }
-  .sig-item { font-size: 6pt; }
-  .grade-scale-table th, .grade-scale-table td { font-size: 5.5pt; padding: 1px 3px; }
+color:#C62828;
 }
 
-/* ═══════════════════════════════════════════════
-   PRINT STYLES
-═══════════════════════════════════════════════ */
-@media print {
-  html, body { background: white !important; margin: 0; padding: 0; }
 
-  @page {
-    size: A4 portrait;
-    margin: 1cm 2cm 2cm 2cm;
-  }
+/* =========================
+RESULT
+========================= */
 
-  /* Hide everything except result card */
-  #interfacePage,
-  .back-btn,
-  .card-actions,
-  .no-print { display: none !important; }
+#resultPage{
 
-  #resultPage {
-    display: block !important;
-    background: white !important;
-    padding: 0 !important;
-  }
+display:none;
 
-  .result-wrapper {
-    display: block !important;
-    width: 100% !important;
-  }
-
-  .result-card {
-    box-shadow: none !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    font-size: 10pt !important;
-    page-break-inside: avoid;
-  }
+padding:16px 8px 40px;
 }
-  </style>
+
+.result-wrapper{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+}
+
+.back-btn{
+
+display:inline-block;
+
+margin:12px auto 16px;
+
+background:none;
+
+border:1px solid #888;
+
+border-radius:6px;
+
+padding:7px 22px;
+
+cursor:pointer;
+}
+
+.result-card{
+
+background:#fff;
+
+width:210mm;
+
+max-width:100%;
+
+padding:0.8cm 1.6cm 1.6cm 1.6cm;
+
+box-shadow:0 3px 16px rgba(0,0,0,0.18);
+
+position:relative;
+}
+
+.result-card::before{
+
+content:"";
+
+position:absolute;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+width:280px;
+
+height:280px;
+
+background-image:url('https://drive.google.com/uc?export=view&id=YOUR_LOGO_FILE_ID');
+
+background-repeat:no-repeat;
+
+background-position:center;
+
+background-size:contain;
+
+opacity:0.05;
+
+pointer-events:none;
+}
+
+.cert-no{
+
+text-align:right;
+
+font-size:11px;
+
+margin-bottom:3px;
+}
+
+.card-top{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+margin-bottom:2px;
+}
+
+.school-logo{
+
+width:44px;
+
+height:44px;
+
+object-fit:contain;
+}
+
+.card-school-name{
+
+font-size:18px;
+
+font-weight:bold;
+
+text-align:center;
+
+flex:1;
+}
+
+.qr-img{
+
+width:44px;
+
+height:44px;
+}
+
+.card-subtitle{
+
+text-align:center;
+
+font-size:13px;
+
+margin-bottom:4px;
+}
+
+.card-divider{
+
+border:none;
+
+border-top:1px solid #555;
+
+margin:4px 0;
+}
+
+.student-info{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+font-size:13px;
+
+margin:4px 0;
+}
+
+.info-box{
+
+border:1px solid #555;
+
+padding:1px 7px;
+
+display:inline-block;
+}
+
+.section-heading{
+
+text-align:center;
+
+font-weight:bold;
+
+margin:8px 0 5px;
+}
+
+.marks-table{
+
+width:100%;
+
+border-collapse:collapse;
+
+font-size:12px;
+}
+
+.marks-table th,
+.marks-table td{
+
+border:1px solid #555;
+
+padding:3px;
+
+text-align:center;
+}
+
+.marks-table thead th{
+
+background:#F0F0F0;
+}
+
+.subj-cell{
+
+text-align:left;
+
+font-weight:bold;
+}
+
+.obt{
+
+font-weight:bold;
+}
+
+.card-actions{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:12px;
+}
+
+.card-action-btn{
+
+background:none;
+
+border:none;
+
+cursor:pointer;
+
+font-weight:bold;
+
+font-size:14px;
+}
+
+
+/* =========================
+PRINT
+========================= */
+
+@media print{
+
+#interfacePage,
+.back-btn,
+.card-actions{
+
+display:none !important;
+}
+
+#resultPage{
+
+display:block !important;
+}
+
+.result-card{
+
+box-shadow:none;
+}
+}
+
+</style>
+
 </head>
+
 <body>
 
-<!-- ════════════════════════════════════════
-     ① INTERFACE PAGE
-════════════════════════════════════════ -->
 <div id="interfacePage">
 
-  <!-- Logo + School name side by side, logo same height as text -->
-  <div class="iface-header-row">
-    <img class="iface-logo"
-         src="<?= logoUrl ?>"
-         alt="Shripur Kindergarten School Logo"
-         onerror="this.style.display='none'">
-    <h1 class="iface-school-name">SHRIPUR KINDERGARTEN SCHOOL</h1>
-  </div>
-  <p class="iface-tagline">Jagat Infrastructure &amp; Algorithm</p>
-  <strong class="iface-exam-title">First Summative Evaluation - 2026</strong>
+<div class="iface-header-row">
 
-  <div class="iface-card">
-    <!-- Class dropdown -->
-    <div class="sel-wrap">
-      <select id="classSelect" onchange="onClassChange(this)">
-        <option value="" disabled selected>CLASS_SEC</option>
-      </select>
-    </div>
+<img
+class="iface-logo"
+src="https://drive.google.com/uc?export=view&id=YOUR_LOGO_FILE_ID"
+alt="Logo">
 
-    <!-- Student dropdown -->
-    <div class="sel-wrap">
-      <select id="studentSelect" disabled onchange="onStudentChange(this)">
-        <option value="" disabled selected>STUDENTS_NAME</option>
-      </select>
-    </div>
+<h1 class="iface-school-name">
+SHRIPUR KINDERGARTEN SCHOOL
+</h1>
 
-    <!-- View Result button -->
-    <button class="view-btn" id="viewBtn" onclick="viewResult()" disabled>
-      View Result
-    </button>
-  </div>
+</div>
 
-  <p class="loading-msg" id="ifaceLoading">Loading…</p>
-  <p class="err-msg"     id="ifaceError"></p>
+<p class="iface-tagline">
+Jagat Infrastructure & Algorithm
+</p>
 
-</div><!-- /#interfacePage -->
+<strong class="iface-exam-title">
+First Summative Evaluation - 2026
+</strong>
+
+<div class="iface-card">
+
+<div class="sel-wrap">
+
+<select id="classSelect">
+
+<option selected disabled>
+CLASS_SEC
+</option>
+
+</select>
+
+</div>
+
+<div class="sel-wrap">
+
+<select id="studentSelect" disabled>
+
+<option selected disabled>
+STUDENTS_NAME
+</option>
+
+</select>
+
+</div>
+
+<button
+class="view-btn"
+id="viewBtn"
+disabled>
+
+View Result
+
+</button>
+
+</div>
+
+<p
+class="loading-msg"
+id="ifaceLoading">
+
+Loading...
+
+</p>
+
+<p
+class="err-msg"
+id="ifaceError">
+
+</p>
+
+</div>
 
 
-<!-- ════════════════════════════════════════
-     ② RESULT PAGE
-════════════════════════════════════════ -->
 <div id="resultPage">
-  <div class="result-wrapper">
 
-    <!-- Back button (screen only) -->
-    <button class="back-btn no-print" onclick="goBack()">← Back to Search</button>
+<div class="result-wrapper">
 
-    <!-- Card is injected here -->
-    <div id="resultContainer"></div>
+<button
+class="back-btn"
+onclick="goBack()">
 
-  </div>
-</div><!-- /#resultPage -->
+← Back
+
+</button>
+
+<div id="resultContainer">
+
+</div>
+
+</div>
+
+</div>
 
 
-<!-- ════════════════════════════════════════
-     JAVASCRIPT
-════════════════════════════════════════ -->
 <script>
-/* Logo URL passed from GAS template */
-var https://drive.google.com/file/d/1rTZwlUzQU6AjZh0L8vkF8XCpGc8vgwOs/view = '<?= logoUrl ?>';
 
-/* ──────────────────────────────────────────────
-   SUBJECT DEFINITIONS
-   Order matches PDF template rows:
-   B, E, Hn, Br, Er, Gk, C, Ev, M, Ls, Ps, Hs, Ge
-────────────────────────────────────────────── */
-var SUBJECTS = [
-  // key, nameCol, fw, fo, fm, ow, oo, ot, op, og
-  {k:'B',  n:'B',  fw:'Bw', fo:'Bo', fm:'Bm', ow:'BW', oo:'BO', ot:'BT', op:'BP', og:'BG'},
-  {k:'E',  n:'E',  fw:'Ew', fo:'Eo', fm:'Em', ow:'EW', oo:'EO', ot:'ET', op:'EP', og:'EG'},
-  {k:'Hn', n:'Hn', fw:'Hnw',fo:'Hno',fm:'Hnm',ow:'HnW',oo:'HnO',ot:'HnT',op:'HnP',og:'HnG'},
-  {k:'Br', n:'Br', fw:'Brw',fo:'Bro',fm:'Brm',ow:'BrW',oo:'BrO',ot:'BrT',op:'BrP',og:'BrG'},
-  {k:'Er', n:'Er', fw:'Erw',fo:'Ero',fm:'Erm',ow:'ErW',oo:'ErO',ot:'ErT',op:'ErP',og:'ErG'},
-  {k:'Gk', n:'Gk', fw:'Gkw',fo:'Gko',fm:'Gkm',ow:'GkW',oo:'GkO',ot:'GkT',op:'GkP',og:'GkG'},
-  {k:'C',  n:'C',  fw:'Cw', fo:'Co', fm:'Cm', ow:'CW', oo:'CO', ot:'CT', op:'CP', og:'CG'},
-  {k:'Ev', n:'Ev', fw:'Evw',fo:'Evo',fm:'Evm',ow:'EvW',oo:'EvO',ot:'EvT',op:'EvP',og:'EvG'},
-  {k:'M',  n:'M',  fw:'Mw', fo:'Mo', fm:'Mm', ow:'MW', oo:'MO', ot:'MT', op:'MP', og:'MG'},
-  {k:'Ls', n:'Ls', fw:'Lsw',fo:'Lso',fm:'Lsm',ow:'LsW',oo:'LsO',ot:'LsT',op:'LsP',og:'LsG'},
-  {k:'Ps', n:'Ps', fw:'Psw',fo:'Pso',fm:'Psm',ow:'PsW',oo:'PsO',ot:'PsT',op:'PsP',og:'PsG'},
-  {k:'Hs', n:'Hs', fw:'Hsw',fo:'Hso',fm:'Hsm',ow:'HsW',oo:'HsO',ot:'HsT',op:'HsP',og:'HsG'},
-  {k:'Ge', n:'Ge', fw:'Gew',fo:'Geo',fm:'Gem',ow:'GeW',oo:'GeO',ot:'GeT',op:'GeP',og:'GeG'}
+const API_URL =
+"https://script.google.com/macros/s/AKfycby9VfrE_sn4GHKxwYl9XzMvU7kwFKgjxL0UfCSdnDlirzR90RclNOixi3SJwnBmAxOP/exec";
+
+
+const LOGO_URL =
+"https://drive.google.com/uc?export=view&id=YOUR_LOGO_FILE_ID";
+
+
+const SUBJECTS = [
+
+{k:'B',n:'B',fm:'Bm',ot:'BT',og:'BG'},
+
+{k:'E',n:'E',fm:'Em',ot:'ET',og:'EG'},
+
+{k:'Hn',n:'Hn',fm:'Hnm',ot:'HnT',og:'HnG'},
+
+{k:'Br',n:'Br',fm:'Brm',ot:'BrT',og:'BrG'},
+
+{k:'Er',n:'Er',fm:'Erm',ot:'ErT',og:'ErG'},
+
+{k:'Gk',n:'Gk',fm:'Gkm',ot:'GkT',og:'GkG'},
+
+{k:'C',n:'C',fm:'Cm',ot:'CT',og:'CG'},
+
+{k:'Ev',n:'Ev',fm:'Evm',ot:'EvT',og:'EvG'},
+
+{k:'M',n:'M',fm:'Mm',ot:'MT',og:'MG'},
+
+{k:'Ls',n:'Ls',fm:'Lsm',ot:'LsT',og:'LsG'},
+
+{k:'Ps',n:'Ps',fm:'Psm',ot:'PsT',og:'PsG'},
+
+{k:'Hs',n:'Hs',fm:'Hsm',ot:'HsT',og:'HsG'},
+
+{k:'Ge',n:'Ge',fm:'Gem',ot:'GeT',og:'GeG'}
+
 ];
 
-/* ── Helpers ── */
-function v(data, key) {
-  var val = data[key];
-  return (val === undefined || val === null) ? '' : String(val).trim();
-}
-function num(data, key) {
-  var n = parseFloat(v(data, key));
-  return isNaN(n) ? 0 : n;
-}
-function esc(str) {
-  return String(str)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
+
+function v(data,key){
+
+return String(
+data[key] || ''
+).trim();
 }
 
-/* Subject active: max marks > 0 and not blank/"N" */
-function isActive(data, s) {
-  var raw = v(data, s.fm).toLowerCase();
-  if (raw === '' || raw === 'n' || raw === '0') return false;
-  return num(data, s.fm) > 0;
+
+function isActive(data,s){
+
+var raw =
+v(data,s.fm).toLowerCase();
+
+return !(
+raw==='' ||
+raw==='0' ||
+raw==='n'
+);
 }
 
-/* Written-only / Oral-only mode */
-function woMode(data, s) {
-  var fw = num(data, s.fw), fo = num(data, s.fo), fm = num(data, s.fm);
-  if (fo === 0 && fw > 0 && fm === fw) return 'W'; // written only
-  if (fw === 0 && fo > 0 && fm === fo) return 'O'; // oral only
-  return 'B';                                       // both
+
+function showErr(msg){
+
+const el =
+document.getElementById(
+'ifaceError'
+);
+
+el.innerText = msg;
+
+el.style.display='block';
 }
 
-/* Ordinal rank with superscript */
-function ordinal(raw) {
-  var n = parseInt(raw);
-  if (isNaN(n)) return esc(raw);
-  var s = ['th','st','nd','rd'];
-  var v = n % 100;
-  var sfx = s[(v-20)%10] || s[v] || s[0];
-  return n + '<sup style="font-size:0.68em;">' + sfx + '</sup>';
+
+fetch(API_URL + '?action=getClasses')
+
+.then(res=>res.json())
+
+.then(classes=>{
+
+const sel =
+document.getElementById(
+'classSelect'
+);
+
+classes.forEach(c=>{
+
+const opt =
+document.createElement(
+'option'
+);
+
+opt.value=c;
+
+opt.textContent=c;
+
+sel.appendChild(opt);
+});
+
+})
+
+.catch(()=>{
+
+showErr(
+'Class Loading Failed'
+);
+});
+
+
+document
+.getElementById('classSelect')
+
+.addEventListener(
+'change',
+function(){
+
+const cls=this.value;
+
+const studSel =
+document.getElementById(
+'studentSelect'
+);
+
+studSel.innerHTML=
+'<option disabled selected>STUDENTS_NAME</option>';
+
+fetch(
+API_URL +
+'?action=getStudents&className=' +
+encodeURIComponent(cls)
+)
+
+.then(res=>res.json())
+
+.then(list=>{
+
+list.forEach(st=>{
+
+const opt =
+document.createElement(
+'option'
+);
+
+opt.value=st.id;
+
+opt.textContent=st.name;
+
+studSel.appendChild(opt);
+});
+
+studSel.disabled=false;
+});
+});
+
+
+document
+.getElementById('studentSelect')
+
+.addEventListener(
+'change',
+function(){
+
+document
+.getElementById('viewBtn')
+.disabled=false;
+});
+
+
+document
+.getElementById('viewBtn')
+
+.addEventListener(
+'click',
+function(){
+
+const sid =
+document.getElementById(
+'studentSelect'
+).value;
+
+fetch(
+API_URL +
+'?action=getResult&studentId=' +
+encodeURIComponent(sid)
+)
+
+.then(res=>res.json())
+
+.then(data=>{
+
+renderCard(data);
+
+document
+.getElementById(
+'interfacePage'
+)
+.style.display='none';
+
+document
+.getElementById(
+'resultPage'
+)
+.style.display='block';
+
+});
+});
+
+
+function goBack(){
+
+document
+.getElementById(
+'resultPage'
+)
+.style.display='none';
+
+document
+.getElementById(
+'interfacePage'
+)
+.style.display='flex';
 }
 
-/* Safe percentage: if numeric, add % as-is; else blank */
-function pct(raw) {
-  if (raw === '') return '';
-  var n = parseFloat(raw);
-  return isNaN(n) ? esc(raw) : n + '%';
+
+function renderCard(d){
+
+let rows='';
+
+SUBJECTS.forEach(s=>{
+
+if(!isActive(d,s)) return;
+
+rows += `
+
+<tr>
+
+<td class="subj-cell">
+${v(d,s.n)}
+</td>
+
+<td class="obt">
+${v(d,s.ot)}
+</td>
+
+<td class="obt">
+${v(d,s.og)}
+</td>
+
+</tr>
+`;
+});
+
+
+const html = `
+
+<div class="result-card">
+
+<div class="cert-no">
+
+Certificate No.
+${v(d,'I_D')}
+
+</div>
+
+<div class="card-top">
+
+<img
+class="school-logo"
+src="${LOGO_URL}">
+
+<div class="card-school-name">
+
+SHRIPUR KINDERGARTEN SCHOOL
+
+</div>
+
+<img
+class="qr-img"
+src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=${v(d,'I_D')}">
+
+</div>
+
+<div class="card-subtitle">
+
+Progress Report Card of
+First Summative Evaluation,
+2026
+
+</div>
+
+<hr class="card-divider">
+
+<div class="student-info">
+
+<span>
+CLASS:
+<strong>${v(d,'CLASS')}</strong>
+</span>
+
+<span>
+ROLL:
+<span class="info-box">
+${v(d,'ROLL')}
+</span>
+</span>
+
+</div>
+
+<div class="student-info">
+
+<span>
+Name:
+<strong>
+${v(d,'STUDENT_NAME')}
+</strong>
+</span>
+
+</div>
+
+<div class="section-heading">
+
+Assessment of Academic Areas
+
+</div>
+
+<table class="marks-table">
+
+<thead>
+
+<tr>
+
+<th>Subject</th>
+
+<th>Total</th>
+
+<th>Grade</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${rows}
+
+</tbody>
+
+</table>
+
+<div class="card-actions">
+
+<button
+class="card-action-btn"
+onclick="window.print()">
+
+🖨 Print
+
+</button>
+
+<button
+class="card-action-btn"
+onclick="window.print()">
+
+⬇ Download
+
+</button>
+
+</div>
+
+</div>
+`;
+
+document
+.getElementById(
+'resultContainer'
+)
+.innerHTML = html;
 }
 
-/* ──────────────────────────────────────────────
-   INTERFACE EVENTS
-────────────────────────────────────────────── */
-function onClassChange(sel) {
-  var cls = sel.value;
-  sel.className = cls ? 'has-value' : '';
-
-  var studSel = document.getElementById('studentSelect');
-  studSel.innerHTML = '<option value="" disabled selected>STUDENTS_NAME</option>';
-  studSel.disabled = true;
-  studSel.className = '';
-  document.getElementById('viewBtn').disabled = true;
-  document.getElementById('ifaceError').style.display = 'none';
-
-  if (!cls) return;
-
-  document.getElementById('ifaceLoading').style.display = 'block';
-
-  google.script.run
-    .withSuccessHandler(function(list) {
-      document.getElementById('ifaceLoading').style.display = 'none';
-      if (!list || list.length === 0) {
-        showErr('No students found for this class.');
-        return;
-      }
-      list.forEach(function(st) {
-        var opt = document.createElement('option');
-        opt.value = st.id;
-        opt.textContent = st.name;
-        studSel.appendChild(opt);
-      });
-      studSel.disabled = false;
-    })
-    .withFailureHandler(function() {
-      document.getElementById('ifaceLoading').style.display = 'none';
-      showErr('Error loading students. Please try again.');
-    })
-    .getStudentsByClass(cls);
-}
-
-function onStudentChange(sel) {
-  sel.className = sel.value ? 'has-value' : '';
-  document.getElementById('viewBtn').disabled = !sel.value;
-}
-
-function viewResult() {
-  var sid = document.getElementById('studentSelect').value;
-  if (!sid) return;
-
-  document.getElementById('ifaceLoading').style.display = 'block';
-  document.getElementById('ifaceError').style.display   = 'none';
-  document.getElementById('viewBtn').disabled = true;
-
-  google.script.run
-    .withSuccessHandler(function(data) {
-      document.getElementById('ifaceLoading').style.display = 'none';
-      document.getElementById('viewBtn').disabled = false;
-      if (!data) { showErr('Student data not found.'); return; }
-      renderCard(data);
-      document.getElementById('interfacePage').style.display = 'none';
-      document.getElementById('resultPage').style.display    = 'block';
-      window.scrollTo(0, 0);
-    })
-    .withFailureHandler(function() {
-      document.getElementById('ifaceLoading').style.display = 'none';
-      document.getElementById('viewBtn').disabled = false;
-      showErr('Error fetching result. Please try again.');
-    })
-    .getStudentResult(sid);
-}
-
-function goBack() {
-  document.getElementById('resultPage').style.display    = 'none';
-  document.getElementById('interfacePage').style.display = 'flex';
-  window.scrollTo(0, 0);
-}
-
-function showErr(msg) {
-  var el = document.getElementById('ifaceError');
-  el.textContent = msg;
-  el.style.display = 'block';
-}
-
-/* ──────────────────────────────────────────────
-   PRINT & DOWNLOAD
-────────────────────────────────────────────── */
-function printCard()    { window.print(); }
-function downloadCard() { window.print(); } // user selects "Save as PDF" in dialog
-
-/* ──────────────────────────────────────────────
-   RENDER RESULT CARD
-────────────────────────────────────────────── */
-function renderCard(d) {
-  var sid   = v(d, 'I_D');
-  var cls   = v(d, 'CLASS');
-  var roll  = v(d, 'ROLL');
-  var sname = v(d, 'STUDENT_NAME');
-  var fname = v(d, 'FATHER_NAME');
-  var gt    = v(d, 'GT');       // Grand Total obtained
-  var fm    = v(d, 'fm');       // Full Marks total
-  var gtp   = v(d, 'GTP');      // Grand Total Percentage
-  var gtg   = v(d, 'GTG');      // Grand Total Grade
-  var rl    = v(d, 'RL');       // Result
-  var rno   = v(d, 'RNO');      // Rank ordinal
-  var wed   = v(d, 'Wed');      // Work Ed / ART area
-
-  // Percentage: 2 decimal places
-  var gtpFmt = gtp !== '' ? (isNaN(parseFloat(gtp)) ? gtp : parseFloat(gtp).toFixed(2) + '%') : '';
-
-  // QR code (encodes student ID)
-  var qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=' + encodeURIComponent(sid);
-
-  /* ── Build subject rows ── */
-  var subjectRows = '';
-  SUBJECTS.forEach(function(s) {
-    if (!isActive(d, s)) return;
-
-    var mode    = woMode(d, s);
-    var subName = esc(v(d, s.n) || s.k); // name from sheet col
-
-    // Full marks cells
-    var fwCell = (mode === 'O') ? '' : esc(v(d, s.fw));
-    var foCell = (mode === 'W') ? '' : esc(v(d, s.fo));
-    var fmCell = esc(v(d, s.fm));
-
-    // Obtained marks cells
-    var owCell = (mode === 'O') ? '' : ('<span class="obt">' + esc(v(d, s.ow)) + '</span>');
-    var ooCell = (mode === 'W') ? '' : ('<span class="obt">' + esc(v(d, s.oo)) + '</span>');
-    var otCell = '<span class="obt">' + esc(v(d, s.ot)) + '</span>';
-
-    // Subject percentage – append % directly
-    var opRaw = v(d, s.op);
-    var opCell = opRaw !== '' ? pct(opRaw) : '';
-    var ogCell = esc(v(d, s.og));
-
-    subjectRows += '<tr>' +
-      '<td class="subj-cell">' + subName + '</td>' +
-      '<td>' + fwCell + '</td>' +
-      '<td>' + foCell + '</td>' +
-      '<td>' + fmCell + '</td>' +
-      '<td class="sep-col"></td>' +
-      '<td>' + owCell + '</td>' +
-      '<td>' + ooCell + '</td>' +
-      '<td>' + otCell + '</td>' +
-      '<td>' + opCell + '</td>' +
-      '<td>' + ogCell + '</td>' +
-    '</tr>';
-  });
-
-  /* ── Build rank ordinal ── */
-  var rnoHtml = rno ? ordinal(rno) : '';
-
-    /* ── Assemble card HTML ── */
-  var logoHtml = https://drive.google.com/file/d/1rTZwlUzQU6AjZh0L8vkF8XCpGc8vgwOs/view
-    ? '<img class="school-emblem-img" src="' + https://drive.google.com/file/d/1rTZwlUzQU6AjZh0L8vkF8XCpGc8vgwOs/view + '" alt="Logo" onerror="this.outerHTML=\'<div class=school-emblem>S<br>K<br>S</div>\'">'
-    : '<div class="school-emblem">S<br>K<br>S</div>';
-
-  var html = '' +
-  '<div class="result-card" id="printArea">' +
-
-    /* Certificate No */
-    '<div class="cert-no">Certificate No. ' + esc(sid) + '</div>' +
-
-    /* Header */
-    '<div class="card-top">' +
-      logoHtml +
-      '<div class="card-school-name">SHRIPUR KINDERGARTEN SCHOOL</div>' +
-      '<img class="qr-img" src="' + qrUrl + '" alt="QR Code" ' +
-        'onerror="this.style.visibility=\'hidden\'">' +
-    '</div>' +
-
-    '<div class="card-subtitle">Progress Report Card of First Summative Evaluation, 2026</div>' +
-    '<hr class="card-divider">' +
-
-    /* Student info row 1 */
-    '<div class="student-info">' +
-      '<span>CLASS: <strong>' + esc(cls) + '</strong></span>' +
-      '<span>ROLL: <span class="info-box"><strong>' + esc(roll) + '</strong></span></span>' +
-      '<span>NO: <span class="info-box"><strong>' + esc(sid) + '</strong></span></span>' +
-    '</div>' +
-
-    /* Student info row 2 */
-    '<div class="student-info">' +
-      '<span>Name: &nbsp;<strong>' + esc(sname) + '</strong></span>' +
-      '<span>&nbsp;&nbsp;S/D/W of: &nbsp;<strong>' + esc(fname) + '</strong></span>' +
-    '</div>' +
-
-    /* Section heading */
-    '<div class="section-heading">Assessment of Academic Areas</div>' +
-
-    /* ── Main marks table ── */
-    '<table class="marks-table" style="table-layout:fixed;">' +
-      '<colgroup>' +
-        '<col style="width:18%">' +
-        '<col style="width:7%"><col style="width:7%"><col style="width:7%">' +
-        '<col style="width:4px">' +
-        '<col style="width:7%"><col style="width:7%"><col style="width:7%">' +
-        '<col style="width:9%"><col style="width:7%">' +
-      '</colgroup>' +
-      '<thead>' +
-        '<tr>' +
-          '<th rowspan="2" style="font-size:8pt;">Compulsory<br>Subjects</th>' +
-          '<th colspan="3" style="font-size:7.5pt;">Full Marks</th>' +
-          '<th rowspan="2" class="sep-col"></th>' +
-          '<th colspan="3" style="font-size:7.5pt;">Marks Obtained</th>' +
-          '<th rowspan="2" style="font-size:8pt;">%</th>' +
-          '<th rowspan="2" style="font-size:8pt;">Grade</th>' +
-        '</tr>' +
-        '<tr>' +
-          '<th style="font-size:7.5pt;">Written</th><th style="font-size:7.5pt;">Oral</th><th style="font-size:7.5pt;">Total</th>' +
-          '<th style="font-size:7.5pt;">Written</th><th style="font-size:7.5pt;">Oral</th><th style="font-size:7.5pt;">Total</th>' +
-        '</tr>' +
-      '</thead>' +
-      '<tbody>' +
-        subjectRows +
-      '</tbody>' +
-    '</table>' +
-
-    /* ── Optional subjects + summary table ── */
-    '<table class="summary-table">' +
-      '<tbody>' +
-        /* Row 1: ART + headers */
-        '<tr>' +
-          '<td class="opt-subj-label" rowspan="2" style="font-size:6.5pt;color:#999;">Optional</td>' +
-          '<td style="font-size:8pt;font-weight:bold;">ART</td>' +
-          '<td style="font-size:7.5pt;">Grade</td>' +
-          '<td style="font-weight:bold;">' + esc(wed) + '</td>' +
-          '<th style="font-size:7.5pt;background:#F0F0F0;">FM</th>' +
-          '<th style="font-size:7.5pt;background:#F0F0F0;">Obt</th>' +
-          '<th style="font-size:8pt;background:#F0F0F0;">%</th>' +
-          '<th style="font-size:7.5pt;background:#F0F0F0;">Grade</th>' +
-          '<th style="font-size:7.5pt;background:#F0F0F0;">Result</th>' +
-          '<th style="font-size:7.5pt;background:#F0F0F0;">Rank</th>' +
-        '</tr>' +
-        /* Row 2: Work Ed + values */
-        '<tr>' +
-          '<td colspan="3" style="font-size:8pt;font-weight:bold;">Work Ed</td>' +
-          '<td class="obt">' + esc(fm)       + '</td>' +
-          '<td class="obt">' + esc(gt)       + '</td>' +
-          '<td class="obt">' + esc(gtpFmt)   + '</td>' +
-          '<td class="obt">' + esc(gtg)      + '</td>' +
-          '<td class="obt">' + esc(rl)       + '</td>' +
-          '<td class="obt">' + rnoHtml       + '</td>' + +
-        '</tr>' +
-      '</tbody>' +
-    '</table>' +
-
-    /* ── Grade scale (tiny) + Signatures side by side ── */
-    '<div class="bottom-row">' +
-
-      '<table class="grade-scale-table">' +
-        '<thead><tr><th style="font-size:6pt;">Scale</th><th style="font-size:6pt;">Letter Grade</th><th style="font-size:6pt;">Performance</th></tr></thead>' +
-        '<tbody style="color:#888;">' +
-          '<tr style="font-size:6pt;"><td>90–100</td><td>AA</td><td>Outstanding</td></tr>' +
-          '<tr style="font-size:6pt;"><td>80–89</td><td>A+</td><td>Excellent</td></tr>' +
-          '<tr style="font-size:6pt;"><td>60–79</td><td>A</td><td>Very good</td></tr>' +
-          '<tr style="font-size:6pt;"><td>45–59</td><td>B+</td><td>Good</td></tr>' +
-          '<tr style="font-size:6pt;"><td>35–44</td><td>B</td><td>Satisfactory</td></tr>' +
-          '<tr style="font-size:6pt;"><td>25–34</td><td>C</td><td>Marginal</td></tr>' +
-          '<tr style="font-size:6pt;"><td>Below 25</td><td>D</td><td>Disqualification</td></tr>' +
-        '</tbody>' +
-      '</table>' +
-
-      '<div class="signatures">' +
-        '<div class="sig-item">' +
-          '<span class="sig-tick">&#9989;</span>' +
-          '<div class="sig-line" style="font-size:6.5pt;">Class Teacher</div>' +
-        '</div>' +
-        '<div class="sig-item">' +
-          '<span class="sig-tick">&#9989;</span>' +
-          '<div class="sig-line" style="font-size:6.5pt;">Jagat Infrastructure<br>&amp; Algorithm</div>' +
-        '</div>' +
-        '<div class="sig-item">' +
-          '<span class="sig-tick">&#9989;</span>' +
-          '<div class="sig-line" style="font-size:6.5pt;">Principal<br>Shripur Kindergarten School</div>' +
-        '</div>' +
-      '</div>' +
-
-    '</div>' +
-
-    /* ── Print / Download ── */
-    '<div class="card-actions no-print">' +
-      '<button class="card-action-btn" onclick="printCard()">&#128438; <strong>Print</strong></button>' +
-      '<button class="card-action-btn" onclick="downloadCard()"><strong>Download</strong> &#8659;</button>' +
-    '</div>' +
-
-  '</div>';/* /.result-card */
-
-  document.getElementById('resultContainer').innerHTML = html;
-}
-
-/* ──────────────────────────────────────────────
-   INIT: load classes on page load
-────────────────────────────────────────────── */
-(function init() {
-  var sel = document.getElementById('classSelect');
-  google.script.run
-    .withSuccessHandler(function(classes) {
-      if (!classes || classes.length === 0) {
-        showErr('No class data found in Master Sheet.');
-        return;
-      }
-      classes.forEach(function(c) {
-        var opt = document.createElement('option');
-        opt.value = c;
-        opt.textContent = c;
-        sel.appendChild(opt);
-      });
-    })
-    .withFailureHandler(function() {
-      showErr('Could not connect to Master Sheet. Please check permissions.');
-    })
-    .getClasses();
-})();
 </script>
 
 </body>
