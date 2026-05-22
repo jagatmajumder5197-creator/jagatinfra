@@ -1,1 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shripur Kindergarten School — Result Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
 
+  <!-- =====================
+       LOADING OVERLAY
+  ===================== -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <p>Loading student data…</p>
+    </div>
+  </div>
+
+  <!-- =====================
+       SELECTION PORTAL
+  ===================== -->
+  <div class="portal-wrapper" id="selectionArea">
+
+    <div class="portal-card">
+
+      <div class="portal-header">
+        <div class="school-emblem">SKS</div>
+        <h1 class="school-name">SHRIPUR KINDERGARTEN SCHOOL</h1>
+        <div class="exam-badge">First Summative Evaluation — 2026</div>
+        <p class="portal-sub">Online Result Portal &nbsp;·&nbsp; <span>JAGAT</span></p>
+      </div>
+
+      <div class="portal-body">
+
+        <label class="field-label">Select Class</label>
+        <select id="classSelect" class="portal-select">
+          <option value="">— Choose Class —</option>
+        </select>
+
+        <label class="field-label">Select Student</label>
+        <select id="studentSelect" class="portal-select">
+          <option value="">— Choose Student —</option>
+        </select>
+
+        <button id="viewResultBtn" class="portal-btn">
+          <span class="btn-icon">🔍</span> View Result
+        </button>
+
+        <p class="portal-note">Select class first, then choose student name</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================
+       RESULT CARD
+  ===================== -->
+  <div class="result-wrapper hidden" id="resultWrapper">
+
+    <div class="result-actions top-actions">
+      <button class="action-link" onclick="backToSearch()">← Back to Search</button>
+    </div>
+
+    <!-- Printable marksheet starts here -->
+    <div class="marksheet" id="marksheet">
+
+      <!-- Watermark -->
+      <div class="watermark">SKS</div>
+
+      <!-- HEADER -->
+      <div class="ms-header">
+
+        <div class="ms-logo-box">
+          <div class="ms-logo-text">SKS</div>
+          <div class="ms-logo-sub">Est. 2000</div>
+        </div>
+
+        <div class="ms-title-block">
+          <h1 class="ms-school-name">SHRIPUR KINDERGARTEN SCHOOL</h1>
+          <div class="ms-divider"></div>
+          <h2 class="ms-exam-title">First Summative Evaluation — 2026</h2>
+          <h3 class="ms-card-label">Progress Report Card</h3>
+        </div>
+
+        <div class="ms-cert-box">
+          <div class="cert-label">Certificate No.</div>
+          <div class="cert-value" id="certificateNo"></div>
+        </div>
+
+      </div>
+
+      <!-- STUDENT + GRADING -->
+      <div class="ms-info-row">
+
+        <!-- Student Details -->
+        <div class="ms-student-block">
+          <table class="student-table">
+            <tr>
+              <td class="st-label">Student's Name</td>
+              <td class="st-value" id="studentName"></td>
+            </tr>
+            <tr>
+              <td class="st-label">Father's Name</td>
+              <td class="st-value" id="fatherName"></td>
+            </tr>
+            <tr>
+              <td class="st-label">Class &amp; Section</td>
+              <td class="st-value" id="studentClass"></td>
+            </tr>
+            <tr>
+              <td class="st-label">Roll Number</td>
+              <td class="st-value" id="rollNumber"></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Grading Scale -->
+        <div class="ms-grade-block">
+          <div class="grade-title">Grading Scale</div>
+          <table class="grade-table">
+            <thead>
+              <tr>
+                <th>Scale</th>
+                <th>Grade</th>
+                <th>Performance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>90–100</td><td class="g-aa">AA</td><td>Outstanding</td></tr>
+              <tr><td>80–89</td><td class="g-aplus">A+</td><td>Excellent</td></tr>
+              <tr><td>60–79</td><td class="g-a">A</td><td>Very Good</td></tr>
+              <tr><td>45–59</td><td class="g-bplus">B+</td><td>Good</td></tr>
+              <tr><td>35–44</td><td class="g-b">B</td><td>Satisfactory</td></tr>
+              <tr><td>25–34</td><td class="g-c">C</td><td>Marginal</td></tr>
+              <tr><td>Below 25</td><td class="g-d">D</td><td>Disqualification</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- SUBJECT TABLE -->
+      <div class="ms-section-label">Assessment of Academic Areas</div>
+
+      <div class="table-scroll">
+        <table class="result-table">
+          <thead>
+            <tr class="th-top">
+              <th rowspan="2" class="col-subject">Subject</th>
+              <th colspan="3" class="col-group">Full Marks</th>
+              <th colspan="5" class="col-group">Obtained Marks</th>
+            </tr>
+            <tr class="th-sub">
+              <th>Written</th>
+              <th>Oral</th>
+              <th>Total</th>
+              <th>Written</th>
+              <th>Oral</th>
+              <th>Total</th>
+              <th>Percentage</th>
+              <th>Grade</th>
+            </tr>
+          </thead>
+          <tbody id="subjectTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- FINAL SUMMARY -->
+      <div class="ms-section-label" style="margin-top:18px;">Final Result Summary</div>
+
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>Full Marks</th>
+            <th>Obtained Marks</th>
+            <th>Percentage</th>
+            <th>Overall Grade</th>
+            <th>Class Rank</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="grandFullMarks"></td>
+            <td id="grandTotal"></td>
+            <td id="grandPercentage"></td>
+            <td id="grandGrade"></td>
+            <td id="grandRank" class="rank-cell"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- VERIFIED -->
+      <div class="verified-note">
+        ✅ Result Verified — Shripur Kindergarten School
+      </div>
+
+      <!-- SIGNATURE AREA -->
+      <div class="signature-area">
+        <div class="sign-box">
+          <div class="sign-tick">✅</div>
+          <div class="sign-line"></div>
+          <div class="sign-title">Class Teacher</div>
+        </div>
+        <div class="sign-box center-sign">
+          <div class="sign-tick">✅</div>
+          <div class="sign-line"></div>
+          <div class="sign-title">Jagat Infrastructure<br>Algorithm &amp; JS</div>
+        </div>
+        <div class="sign-box">
+          <div class="sign-tick">✅</div>
+          <div class="sign-line"></div>
+          <div class="sign-title">Principal</div>
+        </div>
+      </div>
+
+      <!-- FOOTER CREDIT -->
+      <div class="ms-credit">Design by Jagat &nbsp;·&nbsp; 2026</div>
+
+    </div>
+    <!-- marksheet ends -->
+
+    <!-- ACTION BUTTONS (hidden in print) -->
+    <div class="result-actions bottom-actions no-print">
+      <button class="btn-print" onclick="printResult()">🖨 Print</button>
+      <button class="btn-download" onclick="downloadPDF()">⬇ Download PDF</button>
+    </div>
+
+  </div><!-- result-wrapper -->
+
+  <script src="script.js"></script>
+
+  <script>
+    // Back to search portal
+    function backToSearch() {
+      document.getElementById("resultWrapper").classList.add("hidden");
+      document.getElementById("selectionArea").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>
