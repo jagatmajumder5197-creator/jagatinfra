@@ -1,1 +1,827 @@
+/* ================================================
+   SHRIPUR KINDERGARTEN SCHOOL — RESULT PORTAL
+   style.css  |  Design by Jagat  |  2026
+================================================ */
 
+:root {
+  --navy:     #1B2A6B;
+  --indigo:   #2D3E9F;
+  --gold:     #D4963A;
+  --light:    #F4F6FF;
+  --white:    #FFFFFF;
+  --text:     #1A1A2E;
+  --muted:    #6B7280;
+  --border:   #D1D9E6;
+  --shadow:   rgba(27, 42, 107, 0.12);
+  --radius:   16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: var(--light);
+  min-height: 100vh;
+  color: var(--text);
+}
+
+/* ================================================
+   LOADING OVERLAY
+================================================ */
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(27, 42, 107, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+}
+
+.loading-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-box {
+  text-align: center;
+  color: #fff;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 14px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-box p {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ================================================
+   PORTAL (SELECTION SCREEN)
+================================================ */
+
+.portal-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: linear-gradient(145deg, #eef1fb 0%, #f9f7ff 100%);
+}
+
+.portal-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--white);
+  border-radius: 24px;
+  box-shadow: 0 8px 40px var(--shadow);
+  overflow: hidden;
+}
+
+/* Portal Header */
+.portal-header {
+  background: var(--navy);
+  padding: 32px 24px 26px;
+  text-align: center;
+  position: relative;
+}
+
+.portal-header::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin: 14px auto 0;
+}
+
+.school-emblem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2.5px solid var(--gold);
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.school-name {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: 0.4px;
+  line-height: 1.3;
+}
+
+.exam-badge {
+  display: inline-block;
+  margin-top: 10px;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.2px;
+}
+
+.portal-sub {
+  margin-top: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.portal-sub span {
+  color: var(--gold);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Portal Body */
+.portal-body {
+  padding: 28px 24px 30px;
+}
+
+.field-label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+}
+
+.portal-select {
+  width: 100%;
+  height: 50px;
+  padding: 0 14px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--light);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+
+.portal-select:focus {
+  border-color: var(--indigo);
+  background-color: var(--white);
+}
+
+.portal-btn {
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 12px;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 4px;
+}
+
+.portal-btn:hover {
+  background: var(--indigo);
+}
+
+.portal-btn:active {
+  transform: scale(0.98);
+}
+
+.btn-icon {
+  font-size: 16px;
+}
+
+.portal-note {
+  text-align: center;
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+/* ================================================
+   RESULT WRAPPER
+================================================ */
+
+.hidden {
+  display: none !important;
+}
+
+.result-wrapper {
+  padding: 20px 16px 40px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Top / Bottom Action Bars */
+.result-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.top-actions {
+  justify-content: flex-start;
+}
+
+.bottom-actions {
+  justify-content: center;
+  margin-top: 18px;
+  margin-bottom: 0;
+}
+
+.action-link {
+  background: none;
+  border: none;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  cursor: pointer;
+  padding: 6px 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.btn-print,
+.btn-download {
+  padding: 13px 28px;
+  border-radius: 12px;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.btn-print {
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--navy);
+}
+
+.btn-print:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.btn-download {
+  background: var(--navy);
+  color: var(--white);
+  border: 2px solid var(--navy);
+}
+
+.btn-download:hover {
+  background: var(--indigo);
+  border-color: var(--indigo);
+}
+
+/* ================================================
+   MARKSHEET
+================================================ */
+
+.marksheet {
+  position: relative;
+  background: var(--white);
+  border-radius: 20px;
+  padding: 30px 28px 24px;
+  box-shadow: 0 6px 32px var(--shadow);
+  overflow: hidden;
+}
+
+/* Watermark */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 180px;
+  font-weight: 900;
+  color: rgba(27, 42, 107, 0.04);
+  letter-spacing: 6px;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+/* All content sits above watermark */
+.marksheet > *:not(.watermark) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- MARKSHEET HEADER ---- */
+.ms-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 2.5px solid var(--navy);
+  margin-bottom: 20px;
+}
+
+.ms-logo-box {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2.5px solid var(--navy);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--light);
+}
+
+.ms-logo-text {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+}
+
+.ms-logo-sub {
+  font-size: 8px;
+  color: var(--muted);
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.ms-title-block {
+  flex: 1;
+  text-align: center;
+}
+
+.ms-school-name {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.ms-divider {
+  width: 50px;
+  height: 2.5px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin: 7px auto;
+}
+
+.ms-exam-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--indigo);
+}
+
+.ms-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.ms-cert-box {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.cert-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+
+.cert-value {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-top: 2px;
+}
+
+/* ---- STUDENT + GRADING ROW ---- */
+.ms-info-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 22px;
+  align-items: flex-start;
+}
+
+/* Student Table */
+.ms-student-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.st-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  padding: 7px 10px 7px 0;
+  white-space: nowrap;
+  vertical-align: top;
+  width: 38%;
+}
+
+.st-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.student-table tr:last-child .st-value {
+  border-bottom: none;
+}
+
+/* Grading Scale */
+.ms-grade-block {
+  flex-shrink: 0;
+  width: 260px;
+}
+
+.grade-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--indigo);
+  margin-bottom: 6px;
+}
+
+.grade-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.grade-table th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 5px 6px;
+  font-weight: 700;
+  text-align: center;
+  font-size: 10px;
+}
+
+.grade-table td {
+  padding: 4px 6px;
+  text-align: center;
+  border: 1px solid var(--border);
+  font-weight: 600;
+}
+
+.grade-table tbody tr:nth-child(even) td {
+  background: #F8FAFF;
+}
+
+.g-aa    { color: #14532D; font-weight: 800; }
+.g-aplus { color: #065F46; font-weight: 800; }
+.g-a     { color: #1E40AF; font-weight: 800; }
+.g-bplus { color: #0369A1; font-weight: 800; }
+.g-b     { color: #78350F; font-weight: 800; }
+.g-c     { color: #92400E; font-weight: 800; }
+.g-d     { color: #991B1B; font-weight: 800; }
+
+/* ---- SECTION LABEL ---- */
+.ms-section-label {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 6px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #F8FAFF;
+}
+
+/* ---- SUBJECT TABLE ---- */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  min-width: 560px;
+}
+
+.result-table .th-top th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 9px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+.result-table .th-sub th {
+  background: #2D3E9F;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 6px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.col-subject {
+  text-align: left !important;
+  padding-left: 12px !important;
+}
+
+.col-group {
+  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.result-table tbody td {
+  padding: 8px 6px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  border-right: 1px solid var(--border);
+}
+
+.result-table tbody td:first-child {
+  text-align: left;
+  padding-left: 12px;
+  font-weight: 700;
+  font-size: 12px;
+  border-left: 1px solid var(--border);
+}
+
+.result-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.result-table tbody tr:nth-child(even) td {
+  background: #F8FAFF;
+}
+
+.result-table .th-sub th:first-child {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Grade pill in subject table */
+.grade-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 10.5px;
+  font-weight: 800;
+}
+
+.gAA   { background: #DCFCE7; color: #14532D; }
+.gAplus{ background: #CCFBF1; color: #065F46; }
+.gA    { background: #DBEAFE; color: #1E40AF; }
+.gBplus{ background: #E0F2FE; color: #0369A1; }
+.gB    { background: #FEF3C7; color: #78350F; }
+.gC    { background: #FFEDD5; color: #92400E; }
+.gD    { background: #FEE2E2; color: #991B1B; }
+
+/* Dash cell style */
+.dash-cell {
+  color: #CBD5E1;
+  font-size: 14px;
+}
+
+/* ---- SUMMARY TABLE ---- */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.summary-table thead tr {
+  background: var(--navy);
+}
+
+.summary-table th {
+  color: var(--white);
+  padding: 10px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+.summary-table td {
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 16px;
+  border: 1px solid var(--border);
+  color: var(--navy);
+}
+
+.rank-cell {
+  font-size: 22px !important;
+  color: var(--gold) !important;
+}
+
+/* ---- VERIFIED NOTE ---- */
+.verified-note {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #166534;
+  padding: 10px 0;
+  border-top: 1px dashed var(--border);
+  border-bottom: 1px dashed var(--border);
+  margin: 16px 0;
+  background: #F0FDF4;
+  border-radius: 8px;
+}
+
+/* ---- SIGNATURE AREA ---- */
+.signature-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 10px;
+  gap: 12px;
+}
+
+.sign-box {
+  flex: 1;
+  text-align: center;
+}
+
+.sign-tick {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.sign-line {
+  width: 80%;
+  height: 1.5px;
+  background: var(--navy);
+  margin: 0 auto 6px;
+  border-radius: 1px;
+}
+
+.sign-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ---- CREDIT ---- */
+.ms-credit {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: #CBD5E1;
+  margin-top: 20px;
+  letter-spacing: 0.4px;
+}
+
+/* ================================================
+   PRINT STYLES
+================================================ */
+
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  #selectionArea,
+  .no-print,
+  .result-actions,
+  .top-actions {
+    display: none !important;
+  }
+
+  .result-wrapper {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .marksheet {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 18px 20px;
+  }
+
+  .table-scroll {
+    overflow: visible;
+  }
+
+  .result-table,
+  .summary-table {
+    page-break-inside: avoid;
+  }
+}
+
+/* ================================================
+   RESPONSIVE
+================================================ */
+
+@media (max-width: 640px) {
+  .ms-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .ms-cert-box {
+    text-align: center;
+  }
+
+  .ms-info-row {
+    flex-direction: column;
+  }
+
+  .ms-grade-block {
+    width: 100%;
+  }
+
+  .ms-school-name {
+    font-size: 14px;
+  }
+
+  .marksheet {
+    padding: 20px 14px 18px;
+  }
+
+  .signature-area {
+    gap: 6px;
+  }
+
+  .sign-title {
+    font-size: 10px;
+  }
+
+  .summary-table td {
+    font-size: 13px;
+  }
+
+  .rank-cell {
+    font-size: 18px !important;
+  }
+}
+ 
